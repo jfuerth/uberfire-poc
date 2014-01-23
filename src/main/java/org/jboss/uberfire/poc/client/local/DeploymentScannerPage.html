@@ -1,0 +1,610 @@
+<html>
+    <table class="rhs-content-panel" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <td style="vertical-align: top;" align="left">
+                    <table class="fill-layout" cellpadding="0" cellspacing="0">
+                        <tbody>
+                            <tr>
+                                <td style="vertical-align: top;" align="left">
+                                    <table class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align: top;" align="left">
+                                                    <div class="content-header-label">Deployment Scanners</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align: top;" align="left">
+                                                    <table role="toolbar" class="default-toolstrip" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="vertical-align: top;" align="left" width="50%">
+                                                                    <table cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr></tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td style="vertical-align: top;" align="right" width="50%">
+                                                                    <table cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="vertical-align: top;" align="left">
+                                                                                    <button style="margin-right:5px;" id="gwt-debug-addBtnEntityEditor" tabindex="0" class="gwt-Button toolstrip-button toolstrip-button-secondary" type="button">Add</button>
+                                                                                </td>
+                                                                                <td style="vertical-align: top;" align="left">
+                                                                                    <button style="margin-right:5px;" id="gwt-debug-removeBtnEntityEditor" tabindex="0" class="gwt-Button toolstrip-button toolstrip-button-secondary" type="button">Remove</button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align: top;" align="left">
+                                                    <table role="grid" class="default-cell-table"   cellspacing="0">
+                                                        <thead aria-hidden="false">
+                                                            <tr >
+                                                                <th colspan="1" class="cellTableHeader cellTableFirstColumnHeader"  >Name</th>
+                                                                <th colspan="1" class="cellTableHeader cellTableLastColumnHeader"  >Enabled</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody style="">
+                                                            <tr   class="cellTableEvenRow cellTableSelectedRow">
+                                                                <td class="cellTableCell cellTableEvenRowCell cellTableFirstColumn cellTableSelectedRowCell">
+                                                                    <div tabindex="0" style="outline-style:none;" >default</div>
+                                                                </td>
+                                                                <td class="cellTableCell cellTableEvenRowCell cellTableSelectedRowCell cellTableLastColumn">
+                                                                    <div style="outline-style:none;">
+                                                                        <img  src="http://localhost:9990/console/app/clear.cache.gif" style="width:18px;height:18px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAeklEQVR42mNgGAWDEogCcT8QG1FqUDkQfwbiOUDMTYpGYSR2JRD/R8J2xBigwMDIDFJ8EYg9gDgXiP8hGdIBxJyEjYEY8huq6SeaIa2keKkaiHeieQWEO8kJWB4g3kiuS9CBABAvBeIGLHJCpBqWBMQuWMTFRrMV6QAAJHsfWPdPzcAAAAAASUVORK5CYII=) no-repeat 0px 0px;" border="0">
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tbody style="display: none;">
+                                                            <tr>
+                                                                <td colspan="2" align="center">
+                                                                    <div>
+                                                                        <div aria-hidden="false" style="width: 100%; height: 100%; padding: 0px; margin: 0px;">
+                                                                            <div aria-hidden="false" style="width: 100%; height: 100%;">
+                                                                                <div class="gwt-HTML">
+                                                                                    <div class="empty-celltable">No Items!</div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div aria-hidden="true" style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;">
+                                                                            <div class="cellTableLoading" aria-hidden="true" style="width: 100%; height: 100%; display: none;">
+                                                                                <img class="gwt-Image"  src="http://localhost:9990/console/app/clear.cache.gif" style="width:43px;height:11px;background:url(data:image/gif;base64,R0lGODlhKwALAPEAAP///0tKSqampktKSiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAKwALAAACMoSOCMuW2diD88UKG95W88uF4DaGWFmhZid93pq+pwxnLUnXh8ou+sSz+T64oCAyTBUAACH5BAkKAAAALAAAAAArAAsAAAI9xI4IyyAPYWOxmoTHrHzzmGHe94xkmJifyqFKQ0pwLLgHa82xrekkDrIBZRQab1jyfY7KTtPimixiUsevAAAh+QQJCgAAACwAAAAAKwALAAACPYSOCMswD2FjqZpqW9xv4g8KE7d54XmMpNSgqLoOpgvC60xjNonnyc7p+VKamKw1zDCMR8rp8pksYlKorgAAIfkECQoAAAAsAAAAACsACwAAAkCEjgjLltnYmJS6Bxt+sfq5ZUyoNJ9HHlEqdCfFrqn7DrE2m7Wdj/2y45FkQ13t5itKdshFExC8YCLOEBX6AhQAADsAAAAAAAAAAAA=) no-repeat 0px 0px;" border="0">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot aria-hidden="true" style="display: none;"></tfoot>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align: top;" align="left">
+                                                    <table class="default-pager" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="DI EI" style="vertical-align: middle;" align="left">
+                                                                    <img aria-disabled="true" aria-label="First page" role="button" class="gwt-Image"  src="http://localhost:9990/console/app/clear.cache.gif" style="width:15px;height:15px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAABR0lEQVR42nWQParCUBSE7zZdgqhptNUlKBFjZcRCV2AhLsBKEKxCbKKgpfH/p5vHHJhLfGgxyZ3vzOQkca/XC9Lz+UTRF9m3mXu/3zYoioM0TT8eQIkp44qlx+NhWi6XiKLog5P1+307izsVpM1mg0qlgsFggPv9/pNRTuZ2u2G326FarWI0GuF8PtvTt9starWaMWaYZYdy1+vV4OFwQL1et9dVaL/fo9FooNfr+QJnvkxDtVotdLtd21hkYRgiz3PzWqS7L5dKJSwWCz+kxOSV9WUeLpcLptMpyuUy1us1frH/cgwpPB6PLZwkCcQnk8kHE7eyiqfTyb53OBwiCAKsVisfjuPYM2bEHUs8EFL07XYbzWbTe/6wTqdjjF6LnLYKUFmWYT6fW0mbyGazmc9YmReGKG3RRvmixHh3Ch+Px5/Bb0XqDz6XKSkdytUFAAAAAElFTkSuQmCC) no-repeat 0px 0px;" border="0">
+                                                                </td>
+                                                                <td class="DI EI" style="vertical-align: middle;" align="left">
+                                                                    <img aria-disabled="true" aria-label="Previous page" role="button" class="gwt-Image"  src="http://localhost:9990/console/app/clear.cache.gif" style="width:15px;height:15px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAABJUlEQVR42m1ROa6DMBT0OTlBhBQK+nAECiQqhNJwgxTcgIIGOiQqmpQsYQl072ssDbL5KUZvmRmPMWrfdzmOQ77frwZm1G3bdP8L5NSV4AHs27b9xzFMMQVgz1uUZSlxHFs3MjVqXVdrSSDRdV1JkkSg4Z56VG02AUHXdXK/3+X5fMqyLJaZB6AqkBQA7/dbfN/X18U8z7MWQkMj9erz+Yh5QBAEEkWRjOOojSaHmcBOmQPgOI4URXEauDdBjzYzHfX1esntdpO6rq0k6gDLfCWzLNMv3TSNtWcAob95miYNLtGnaSqe50lVVT95vIniw5AchuEkwzCUx+Ohe3Co4KA5k00DU9Djf+d5fs7QoVKnsDCX7Fn7vj/NV15djSZo5M3MINQ/2ulEaN8ZgwUAAAAASUVORK5CYII=) no-repeat 0px 0px;" border="0">
+                                                                </td>
+                                                                <td class="FI" style="vertical-align: middle;" align="left">
+                                                                    <div class="gwt-HTML">1-1 of 1</div>
+                                                                </td>
+                                                                <td class="DI EI" style="vertical-align: middle;" align="left">
+                                                                    <img aria-disabled="true" aria-label="Next page" role="button" class="gwt-Image"  src="http://localhost:9990/console/app/clear.cache.gif" style="width:15px;height:15px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAABI0lEQVR42m1RMQ6CQBDcf/IBNLGh9ws0SAmh4QcWfICKxITKBBoaSlFE0W7NkMxlIRaT2Z2d2TsO+Xw++g/zPP+tbS/f73cloG+axvXg9/ut9FEDhAVNQBzHWlWV2hnnthYGXq+XQ5Ikut/vtW1bnabJzckIg4UFRRjGcdQsy/RwOGjXde5G20XyfD6XAgwRBi47nU4aBIH2fb/S6VvCBEUA/ePx0CiK9Hg8Op2zJWwFimSgLEv1PG+luzC+z57OHlzXte52Oz2fz05DCDdCLxQhgBm+Xq/q+77mee5OsnOw2BDq+/2ul8tleek0TVc6vWSByAEYIh4oDEMdhmEB5xbQxG6FEeGiKJb/y/5fECzb7ayJ2+3mAhbwCQsaLW8X2YOAHx5pRGKigYRcAAAAAElFTkSuQmCC) no-repeat 0px 0px;" border="0">
+                                                                </td>
+                                                                <td class="DI EI" style="vertical-align: middle;" align="left">
+                                                                    <img aria-disabled="true" aria-label="Last page" role="button" class="gwt-Image"  src="http://localhost:9990/console/app/clear.cache.gif" style="width:15px;height:15px;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAABTElEQVR42nWRva6CQBCF9zV9A9BgAbX6BFAYtVKiiT6BBU9AAwmJFYGKxtI/8K8bc+ZmNruaW5zMzMc5swuo5/NJr9fLkjBUs//2KYF1XVtmkfDvxe/3+y8MLRYLyrLMWvB4PGg+n1Oe55pD4JC63+/cLJdLGgwGVFUVz+AwCscNJCTPdPh6vdJmsyHP86hpGjZAbdvSer3WXML6ZBm6ruNrBkFAx+ORORg0m83I932LK2wWA4QbTKdTmkwmPIvxcrkwH4/HPCOnzKAsStOUer2exVBNrk82dTgcyHVd2u/3VhDccRzN+WQzWJYlG3a7Hd1uN4v3+33abrfWQQomqCgKGg6HFMcxvzceogpfrVY8ix+9wodAMxqNKAxDOp/PPAvHB4qiSHPUn3CSJPwfxSALhKM3xWEYIYHSm+x0Ov0w9Oo/g9zgeyEEL+oH0F8pOyQKkz0AAAAASUVORK5CYII=) no-repeat 0px 0px;" border="0">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align: top;" align="left">
+                                                    <div class="content-group-label">Details</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align: top;" align="left">
+                                                    <table class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="vertical-align: top;" align="left">
+                                                                    <table aria-hidden="true" style="display: none;" role="toolbar" class="default-toolstrip suppressed rbac-suppressed" cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="vertical-align: top;" align="left" width="50%">
+                                                                                    <table cellpadding="0" cellspacing="0">
+                                                                                        <tbody>
+                                                                                            <tr></tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                                <td style="vertical-align: top;" align="right" width="50%">
+                                                                                    <table cellpadding="0" cellspacing="0">
+                                                                                        <tbody>
+                                                                                            <tr></tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="vertical-align: top;" align="left">
+                                                                    <table class="gwt-DisclosurePanel gwt-DisclosurePanel-closed help-panel" cellpadding="0" cellspacing="0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td style="vertical-align: top;" align="left">
+                                                                                    <a class="header" style="display: block;" href="javascript:void(0);">
+                                                                                        <div style="padding-top:5px;" tabindex="0" class="gwt-HTML inline-link help-panel-header"></div>
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td style="vertical-align: top;" align="left">
+                                                                                    <div style="padding: 0px; overflow: hidden;"></div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="vertical-align: top;" align="left">
+                                                                    <div class="fill-layout-width">
+                                                                        <div aria-hidden="false" style="width: 100%; height: 100%; padding: 0px; margin: 0px;">
+                                                                            <table aria-hidden="false" style="width: 100%; height: 100%;" class="fill-layout-width form-view-panel" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="vertical-align: top;" align="left">
+                                                                                            <div id="editScannerButton" class="form-edit-button">
+                                                                                                <i class="icon-edit"></i>&nbsp; Edit</div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="vertical-align: top;" align="left">
+                                                                                            <p>BEGIN FORM TABLE</p>
+                                                                                            <div id='scannerDetail' class="form-item-table">
+                                                                                            </div>
+                                                                                            <p>END FORM TABLE</p>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <div aria-hidden="true" style="width: 100%; height: 100%; padding: 0px; margin: 0px; display: none;">
+                                                                            <table aria-hidden="true" style="width: 100%; height: 100%; display: none;" class="fill-layout-width form-edit-panel" cellpadding="0" cellspacing="0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <td style="vertical-align: top;" align="left">
+                                                                                            <div class="form-edit-button-disabled">
+                                                                                                <i class="icon-edit"></i>&nbsp; Edit</div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="vertical-align: top;" align="left">
+                                                                                            <div>
+                                                                                                <table class="form-item-table" id="form-gwt-uid-281_" role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                                                                    <colgroup class="cols_1">
+                                                                                                        <col class="form-item-title-col">
+                                                                                                            <col class="form-item-col">
+                                                                                                    </colgroup>
+                                                                                                    <tbody>
+                                                                                                        <tr>
+                                                                                                            <td class="form-item-title">
+                                                                                                                <label for="form-gwt-uid-281_name" id="form-gwt-uid-281_name_l">Name:</label>
+                                                                                                            </td>
+                                                                                                            <td class="form-item" id="form-gwt-uid-281_name_i">
+                                                                                                                <table class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                                    <tbody>
+                                                                                                                                        <tr>
+                                                                                                                                            <td class="form-input" style="vertical-align: top;" align="left">
+                                                                                                                                                <input disabled="" tabindex="0" title="Name" name="name" class="gwt-TextBox" type="text">
+                                                                                                                                            </td>
+                                                                                                                                            <td style="width:16px;vertical-align:middle" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML">
+                                                                                                                                                    <i class="icon-lock"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                            <td class="form-expr" style="vertical-align: top;" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="expression-icon">
+                                                                                                                                                    <i class="icon-link"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    </tbody>
+                                                                                                                                </table>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML form-item-error-desc">Invalid input: no whitespace, no special chars</div>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="form-item-title">
+                                                                                                                <label for="form-gwt-uid-281_path" id="form-gwt-uid-281_path_l">Path:</label>
+                                                                                                            </td>
+                                                                                                            <td class="form-item" id="form-gwt-uid-281_path_i">
+                                                                                                                <table class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                                    <tbody>
+                                                                                                                                        <tr>
+                                                                                                                                            <td class="form-input" style="vertical-align: top;" align="left">
+                                                                                                                                                <input tabindex="0" title="Path" name="path" class="gwt-TextBox" type="text">
+                                                                                                                                            </td>
+                                                                                                                                            <td style="width:16px;vertical-align:middle" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML">
+                                                                                                                                                    <i class="icon-lock"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                            <td class="form-expr" style="vertical-align: top;" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="expression-icon">
+                                                                                                                                                    <i class="icon-link"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    </tbody>
+                                                                                                                                </table>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML form-item-error-desc">Invalid input: no whitespace, no special chars</div>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="form-item-title">
+                                                                                                                <label for="form-gwt-uid-281_scanInterval" id="form-gwt-uid-281_scanInterval_l">Scan Interval (ms):</label>
+                                                                                                            </td>
+                                                                                                            <td class="form-item" id="form-gwt-uid-281_scanInterval_i">
+                                                                                                                <table class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                                    <tbody>
+                                                                                                                                        <tr>
+                                                                                                                                            <td class="form-input" style="vertical-align: top;" align="left">
+                                                                                                                                                <input size="6" tabindex="0" title="Scan Interval (ms)" name="scanInterval" class="gwt-TextBox" type="text">
+                                                                                                                                            </td>
+                                                                                                                                            <td style="width:16px;vertical-align:middle" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML">
+                                                                                                                                                    <i class="icon-lock"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                            <td class="form-expr" style="vertical-align: top;" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="expression-icon">
+                                                                                                                                                    <i class="icon-link"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    </tbody>
+                                                                                                                                </table>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML form-item-error-desc">Invalid numeric value</div>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="form-item-title">
+                                                                                                                <label for="form-gwt-uid-281_autoDeployZipped" id="form-gwt-uid-281_autoDeployZipped_l">Auto-deploy Zipped:</label>
+                                                                                                            </td>
+                                                                                                            <td class="form-item" id="form-gwt-uid-281_autoDeployZipped_i">
+                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <span aria-hidden="false" style="" title="Shift click for expression input" class="gwt-CheckBox">
+                                                                                                                                    <input checked="" tabindex="0" id="gwt-uid-274" value="on" type="checkbox">
+                                                                                                                                        <label for="gwt-uid-274"></label>
+                                                                                                                                </span>
+                                                                                                                            </td>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <table aria-hidden="true" style="display: none;" class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                                                                                                                    <tbody>
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                                                    <tbody>
+                                                                                                                                                        <tr>
+                                                                                                                                                            <td class="form-input" style="vertical-align: top;" align="left">
+                                                                                                                                                                <input title="Shift click for regular input" class="gwt-TextBox" type="text">
+                                                                                                                                                            </td>
+                                                                                                                                                            <td style="width:16px;vertical-align:middle" align="left">
+                                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML">
+                                                                                                                                                                    <i class="icon-lock"></i>
+                                                                                                                                                                </div>
+                                                                                                                                                            </td>
+                                                                                                                                                            <td class="form-expr" style="vertical-align: top;" align="left">
+                                                                                                                                                                <div aria-hidden="false" style="" class="expression-icon">
+                                                                                                                                                                    <i class="icon-link"></i>
+                                                                                                                                                                </div>
+                                                                                                                                                            </td>
+                                                                                                                                                        </tr>
+                                                                                                                                                    </tbody>
+                                                                                                                                                </table>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML form-item-error-desc">Invalid expression value</div>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    </tbody>
+                                                                                                                                </table>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="form-item-title">
+                                                                                                                <label for="form-gwt-uid-281_autoDeployExploded" id="form-gwt-uid-281_autoDeployExploded_l">Auto-deploy Exploded:</label>
+                                                                                                            </td>
+                                                                                                            <td class="form-item" id="form-gwt-uid-281_autoDeployExploded_i">
+                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <span aria-hidden="false" style="" title="Shift click for expression input" class="gwt-CheckBox">
+                                                                                                                                    <input tabindex="0" id="gwt-uid-275" value="on" type="checkbox">
+                                                                                                                                        <label for="gwt-uid-275"></label>
+                                                                                                                                </span>
+                                                                                                                            </td>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <table aria-hidden="true" style="display: none;" class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                                                                                                                    <tbody>
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                                                    <tbody>
+                                                                                                                                                        <tr>
+                                                                                                                                                            <td class="form-input" style="vertical-align: top;" align="left">
+                                                                                                                                                                <input title="Shift click for regular input" class="gwt-TextBox" type="text">
+                                                                                                                                                            </td>
+                                                                                                                                                            <td style="width:16px;vertical-align:middle" align="left">
+                                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML">
+                                                                                                                                                                    <i class="icon-lock"></i>
+                                                                                                                                                                </div>
+                                                                                                                                                            </td>
+                                                                                                                                                            <td class="form-expr" style="vertical-align: top;" align="left">
+                                                                                                                                                                <div aria-hidden="false" style="" class="expression-icon">
+                                                                                                                                                                    <i class="icon-link"></i>
+                                                                                                                                                                </div>
+                                                                                                                                                            </td>
+                                                                                                                                                        </tr>
+                                                                                                                                                    </tbody>
+                                                                                                                                                </table>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML form-item-error-desc">Invalid expression value</div>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    </tbody>
+                                                                                                                                </table>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="form-item-title">
+                                                                                                                <label for="form-gwt-uid-281_deploymentTimeout" id="form-gwt-uid-281_deploymentTimeout_l">Deployment Timeout (sec):</label>
+                                                                                                            </td>
+                                                                                                            <td class="form-item" id="form-gwt-uid-281_deploymentTimeout_i">
+                                                                                                                <table class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                                    <tbody>
+                                                                                                                                        <tr>
+                                                                                                                                            <td class="form-input" style="vertical-align: top;" align="left">
+                                                                                                                                                <input size="6" tabindex="0" title="Deployment Timeout (sec)" name="deploymentTimeout" class="gwt-TextBox" type="text">
+                                                                                                                                            </td>
+                                                                                                                                            <td style="width:16px;vertical-align:middle" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML">
+                                                                                                                                                    <i class="icon-lock"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                            <td class="form-expr" style="vertical-align: top;" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="expression-icon">
+                                                                                                                                                    <i class="icon-link"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    </tbody>
+                                                                                                                                </table>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML form-item-error-desc">Invalid numeric value</div>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="form-item-title">
+                                                                                                                <label for="form-gwt-uid-281_relativeTo" id="form-gwt-uid-281_relativeTo_l">Path Relative To:</label>
+                                                                                                            </td>
+                                                                                                            <td class="form-item" id="form-gwt-uid-281_relativeTo_i">
+                                                                                                                <table class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                                    <tbody>
+                                                                                                                                        <tr>
+                                                                                                                                            <td class="form-input" style="vertical-align: top;" align="left">
+                                                                                                                                                <input tabindex="0" title="Path Relative To" name="relativeTo" class="gwt-TextBox" type="text">
+                                                                                                                                            </td>
+                                                                                                                                            <td style="width:16px;vertical-align:middle" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML">
+                                                                                                                                                    <i class="icon-lock"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                            <td class="form-expr" style="vertical-align: top;" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="expression-icon">
+                                                                                                                                                    <i class="icon-link"></i>
+                                                                                                                                                </div>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    </tbody>
+                                                                                                                                </table>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML form-item-error-desc">Invalid input: no whitespace, no special chars</div>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                            <td class="form-item-title">
+                                                                                                                <label for="form-gwt-uid-281_enabled" id="form-gwt-uid-281_enabled_l">Enabled:</label>
+                                                                                                            </td>
+                                                                                                            <td class="form-item" id="form-gwt-uid-281_enabled_i">
+                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                    <tbody>
+                                                                                                                        <tr>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <span aria-hidden="false" style="" title="Shift click for expression input" class="gwt-CheckBox">
+                                                                                                                                    <input checked="" tabindex="0" id="gwt-uid-276" value="on" type="checkbox">
+                                                                                                                                        <label for="gwt-uid-276"></label>
+                                                                                                                                </span>
+                                                                                                                            </td>
+                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                <table aria-hidden="true" style="display: none;" class="fill-layout-width" cellpadding="0" cellspacing="0">
+                                                                                                                                    <tbody>
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                                <table cellpadding="0" cellspacing="0">
+                                                                                                                                                    <tbody>
+                                                                                                                                                        <tr>
+                                                                                                                                                            <td class="form-input" style="vertical-align: top;" align="left">
+                                                                                                                                                                <input title="Shift click for regular input" class="gwt-TextBox" type="text">
+                                                                                                                                                            </td>
+                                                                                                                                                            <td style="width:16px;vertical-align:middle" align="left">
+                                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML">
+                                                                                                                                                                    <i class="icon-lock"></i>
+                                                                                                                                                                </div>
+                                                                                                                                                            </td>
+                                                                                                                                                            <td class="form-expr" style="vertical-align: top;" align="left">
+                                                                                                                                                                <div aria-hidden="false" style="" class="expression-icon">
+                                                                                                                                                                    <i class="icon-link"></i>
+                                                                                                                                                                </div>
+                                                                                                                                                            </td>
+                                                                                                                                                        </tr>
+                                                                                                                                                    </tbody>
+                                                                                                                                                </table>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                        <tr>
+                                                                                                                                            <td style="vertical-align: top;" align="left">
+                                                                                                                                                <div aria-hidden="true" style="display: none;" class="gwt-HTML form-item-error-desc">Invalid expression value</div>
+                                                                                                                                            </td>
+                                                                                                                                        </tr>
+                                                                                                                                    </tbody>
+                                                                                                                                </table>
+                                                                                                                            </td>
+                                                                                                                        </tr>
+                                                                                                                    </tbody>
+                                                                                                                </table>
+                                                                                                            </td>
+                                                                                                        </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td style="vertical-align: top;" align="left">
+                                                                                            <table style="margin-top:8px; width:100%" cellpadding="0" cellspacing="0">
+                                                                                                <tbody>
+                                                                                                    <tr>
+                                                                                                        <td style="vertical-align: top;" align="right" width="100%">
+                                                                                                            <button style="min-width:60px;" tabindex="0" class="gwt-Button default-button" type="button">Cancel</button>
+                                                                                                        </td>
+                                                                                                        <td style="vertical-align: top;" align="left">
+                                                                                                            <div class="gwt-HTML">&nbsp;</div>
+                                                                                                        </td>
+                                                                                                        <td style="vertical-align: top;" align="left">
+                                                                                                            <button style="min-width:60px;" tabindex="0" class="gwt-Button default-button primary" type="button">Save</button>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </tbody>
+                                                                                            </table>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</html>

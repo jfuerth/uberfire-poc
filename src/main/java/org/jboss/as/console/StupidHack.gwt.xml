@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 1.6//EN"
+        "http://google-web-toolkit.googlecode.com/svn/releases/1.6/distro-source/core/src/gwt-module.dtd">
+
+<!-- This module is a stupid hack to bring in the ResourceAccessLog type;
+     The HAL console App.gwt.xml does the same in the real HAL console.
+     It would be preferable for the dmr module to define this GWT module internally. -->
+<module>
+    <source path="client/rbac"/>
+    <source path="client/shared/state"/>
+</module>
