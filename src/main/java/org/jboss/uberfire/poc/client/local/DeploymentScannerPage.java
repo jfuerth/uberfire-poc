@@ -18,21 +18,24 @@
  */
 package org.jboss.uberfire.poc.client.local;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Widget;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+
 import org.jboss.ballroom.client.widgets.forms.Form;
+import org.jboss.ballroom.client.widgets.forms.FormCallback;
 import org.jboss.ballroom.client.widgets.forms.TextItem;
+import org.jboss.errai.ui.nav.client.local.Page;
+import org.jboss.errai.ui.shared.api.annotations.DataField;
+import org.jboss.errai.ui.shared.api.annotations.Templated;
 import org.jboss.uberfire.poc.client.ballroom.ConsoleBeanFactory;
 import org.jboss.uberfire.poc.client.ballroom.ConsoleFramework;
 import org.jboss.uberfire.poc.client.ballroom.DeploymentScanner;
-import org.jboss.errai.ui.nav.client.local.Page;
-import org.jboss.errai.ui.shared.api.annotations.DataField;
-import org.jboss.errai.ui.shared.api.annotations.EventHandler;
-import org.jboss.errai.ui.shared.api.annotations.Templated;
+
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  *
@@ -44,15 +47,25 @@ public class DeploymentScannerPage extends Composite {
 
     @DataField
     private Widget scannerDetail;
+    private Form<DeploymentScanner> scannerForm = new Form(DeploymentScanner.class);
+
     @Inject
     private ConsoleFramework consoleFramework;
-    private Form<DeploymentScanner> scannerForm = new Form(DeploymentScanner.class);
-    @Inject
-    @DataField
-    private Button editScannerButton;
 
     public DeploymentScannerPage() {
         TextItem nameItem = new TextItem("name", "Name");
+        scannerForm.setToolsCallback(new FormCallback<DeploymentScanner>() {
+
+          @Override
+          public void onSave(Map<String, Object> changeset) {
+            Window.alert("Ready to save: " + changeset);
+          }
+
+          @Override
+          public void onCancel(DeploymentScanner entity) {
+            Window.alert("Canceled edit on: " + entity);
+          }
+        });
         scannerForm.setFields(nameItem);
         scannerDetail = scannerForm.asWidget();
     }
@@ -64,10 +77,5 @@ public class DeploymentScannerPage extends Composite {
         scanner.setName("foo");
         scannerForm.edit(scanner);
         scannerForm.setEnabled(false);
-    }
-
-    @EventHandler("editScannerButton")
-    public void editScannerButton(ClickEvent event) {
-        scannerForm.setEnabled(true);
     }
 }
