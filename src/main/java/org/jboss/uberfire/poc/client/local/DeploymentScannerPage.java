@@ -22,20 +22,24 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-
-import org.jboss.ballroom.client.widgets.forms.Form;
 import org.jboss.ballroom.client.widgets.forms.FormCallback;
+import org.jboss.ballroom.client.widgets.forms.CheckBoxItem;
+import org.jboss.ballroom.client.widgets.forms.Form;
+import org.jboss.ballroom.client.widgets.forms.NumberBoxItem;
 import org.jboss.ballroom.client.widgets.forms.TextItem;
+import org.jboss.dmr.client.ModelNode;
+import org.jboss.uberfire.poc.client.local.ballroom.ConsoleBeanFactory;
+import org.jboss.uberfire.poc.client.local.ballroom.ConsoleFramework;
+import org.jboss.uberfire.poc.client.local.ballroom.DeploymentScanner;
 import org.jboss.errai.ui.nav.client.local.Page;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
-import org.jboss.uberfire.poc.client.ballroom.ConsoleBeanFactory;
-import org.jboss.uberfire.poc.client.ballroom.ConsoleFramework;
-import org.jboss.uberfire.poc.client.ballroom.DeploymentScanner;
 
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import org.jboss.uberfire.poc.client.local.dmr.DMRCallback;
+import org.jboss.uberfire.poc.client.local.dmr.DMRRequest;
 
 /**
  *
@@ -51,9 +55,19 @@ public class DeploymentScannerPage extends Composite {
 
     @Inject
     private ConsoleFramework consoleFramework;
+    private DeploymentScanner scanner;
 
     public DeploymentScannerPage() {
-        TextItem nameItem = new TextItem("name", "Name");
+        TextItem name = new TextItem("name", "Name");
+        CheckBoxItem autoDepExploded = new CheckBoxItem("auto-deploy-exploded", "Auto-deploy Exploded");
+        CheckBoxItem autoDepXML = new CheckBoxItem("auto-deploy-xml", "Auto-deploy XML");
+        CheckBoxItem autoDepZip = new CheckBoxItem("auto-deploy-zipped", "Auto-deploy Zipped");
+        NumberBoxItem deployTimeout = new NumberBoxItem("deployment-timeout", "Deployment Timeout");
+        TextItem path = new TextItem("deployments", "Deployments");
+        TextItem relativeTo = new TextItem("relative-to", "Relative-to");
+        CheckBoxItem scanEnabled = new CheckBoxItem("scan-enabled", "Scan Enabled");
+        NumberBoxItem scanInterval = new NumberBoxItem("scan-interval", "Scan Interval");
+
         scannerForm.setToolsCallback(new FormCallback<DeploymentScanner>() {
 
           @Override
@@ -66,16 +80,53 @@ public class DeploymentScannerPage extends Composite {
             Window.alert("Canceled edit on: " + entity);
           }
         });
-        scannerForm.setFields(nameItem);
+
+        scannerForm.setFields(name, autoDepExploded, autoDepXML, autoDepZip, deployTimeout, path, relativeTo, scanEnabled, scanInterval);
         scannerDetail = scannerForm.asWidget();
     }
+
+
 
     @PostConstruct
     private void init() {
         ConsoleBeanFactory factory = consoleFramework.getBeanFactory();
-        DeploymentScanner scanner = factory.deploymentScanner().as();
-        scanner.setName("foo");
+        scanner = factory.deploymentScanner().as();
         scannerForm.edit(scanner);
         scannerForm.setEnabled(false);
+        fillScannerData();
+    }
+
+    private void fillScannerData() {
+        DMRRequest.sendRequest(scannerRequest(), new DMRCallback() {
+            @Override
+            public void dmrResponse(ModelNode responseNode) {
+                System.out.println("***** Got response *******");
+                System.out.println(responseNode.toString());
+                System.out.println("**************************");
+
+                scanner.setName("default");
+
+                ModelNode result = responseNode.get("result");
+                scanner.setAutoDeployExploded(result.get("auto-deploy-exploded").asBoolean());
+                scanner.setAutoDeployXML(result.get("auto-deploy-xml").asBoolean());
+                scanner.setAutoDeployZipped(result.get("auto-deploy-zipped").asBoolean());
+                scanner.setDeploymentTimeout(result.get("deployment-timeout").asLong());
+                scanner.setPath(result.get("path").asString());
+                scanner.setRelativeTo(result.get("relative-to").asString());
+                scanner.setScanInterval(result.get("scan-interval").asInt());
+                scanner.setEnabled(result.get("scan-enabled").asBoolean());
+            }
+        });
+    }
+
+    private ModelNode scannerRequest() {
+        ModelNode request = new ModelNode();
+        ModelNode address = new ModelNode();
+        address.add("subsystem", "deployment-scanner");
+        address.add("scanner", "default");
+        request.get("address").set(address);
+        request.get("operation").set("read-resource");
+        request.get("attributes-only").set(true);
+        return request;
     }
 }

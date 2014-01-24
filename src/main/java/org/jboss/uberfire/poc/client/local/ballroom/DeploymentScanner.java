@@ -16,7 +16,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA  02110-1301, USA.
  */
-package org.jboss.uberfire.poc.client.ballroom;
+package org.jboss.uberfire.poc.client.local.ballroom;
 
 /*import org.jboss.as.console.client.shared.viewframework.EnabledEntity;
 import org.jboss.as.console.client.shared.viewframework.NamedEntity;
@@ -98,6 +98,12 @@ public interface DeploymentScanner { //extends NamedEntity, EnabledEntity {
 //            formItemTypeForAdd="CHECK_BOX")
    boolean isAutoDeployExploded();
    void setAutoDeployExploded(boolean autoDeployExploded);
+
+   /*
+    * This one doesn't exist in the current web console!!!
+    */
+   boolean isAutoDeployXML();
+   void setAutoDeployXML(boolean autoDeployXML);
 
 //   @Binding(detypedName="deployment-timeout")
 //   @FormItem(defaultValue="60",

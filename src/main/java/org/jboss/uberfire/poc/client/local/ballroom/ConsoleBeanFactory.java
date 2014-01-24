@@ -17,7 +17,7 @@
  * MA  02110-1301, USA.
  */
 
-package org.jboss.uberfire.poc.client.ballroom;
+package org.jboss.uberfire.poc.client.local.ballroom;
 
 import com.google.web.bindery.autobean.shared.AutoBean;
 import com.google.web.bindery.autobean.shared.AutoBeanFactory;

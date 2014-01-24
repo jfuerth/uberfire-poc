@@ -17,54 +17,40 @@
  * MA  02110-1301, USA.
  */
 
-package org.jboss.uberfire.poc.client.ballroom;
+package org.jboss.uberfire.poc.client.local.ballroom;
 
-import org.jboss.ballroom.client.rbac.AuthorisationDecision;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 import org.jboss.ballroom.client.rbac.SecurityContext;
+import org.jboss.ballroom.client.rbac.SecurityService;
 
 /**
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2014 Red Hat Inc.
  */
-public class BallroomSecurityContext implements SecurityContext {
+public class BallroomSecurityService implements SecurityService {
+
+    private SecurityContext secCtx = new BallroomSecurityContext();
 
     @Override
-    public AuthorisationDecision getReadPriviledge() {
-        return new AuthorisationDecision(true);
+    public SecurityContext getSecurityContext() {
+        return secCtx;
     }
 
     @Override
-    public AuthorisationDecision getWritePriviledge() {
-        return new AuthorisationDecision(true);
+    public Set<String> getReadOnlyJavaNames(Class<?> type, SecurityContext securityContext) {
+        return Collections.EMPTY_SET;
     }
 
     @Override
-    public AuthorisationDecision getAttributeWritePriviledge(String attributeName) {
-        return new AuthorisationDecision(true);
+    public Set<String> getReadOnlyJavaNames(Class<?> type, String resourceAddress, SecurityContext securityContext) {
+        return Collections.EMPTY_SET;
     }
 
     @Override
-    public AuthorisationDecision getReadPrivilege(String resourceAddress) {
-        return new AuthorisationDecision(true);
-    }
-
-    @Override
-    public AuthorisationDecision getWritePrivilege(String resourceAddress) {
-        return new AuthorisationDecision(true);
-    }
-
-    @Override
-    public AuthorisationDecision getAttributeWritePriviledge(String resourceAddress, String attributeName) {
-       return new AuthorisationDecision(true);
-    }
-
-    @Override
-    public AuthorisationDecision getOperationPriviledge(String resourceAddress, String operationName) {
-        return new AuthorisationDecision(true);
-    }
-
-    @Override
-    public void seal() {
+    public Set<String> getReadOnlyDMRNames(String resourceAddress, List<String> formItemNames, SecurityContext securityContext) {
+        return Collections.EMPTY_SET;
     }
 
 }

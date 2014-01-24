@@ -16,41 +16,39 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA  02110-1301, USA.
  */
+package org.jboss.uberfire.poc.client.local.dmr;
 
-package org.jboss.uberfire.poc.client.ballroom;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
-import org.jboss.ballroom.client.rbac.SecurityContext;
-import org.jboss.ballroom.client.rbac.SecurityService;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.Response;
+import org.jboss.dmr.client.ModelNode;
 
 /**
+ * Simplified Callback for DMR requests.
  *
  * @author Stan Silvert ssilvert@redhat.com (C) 2014 Red Hat Inc.
  */
-public class BallroomSecurityService implements SecurityService {
+public abstract class DMRCallback implements RequestCallback {
 
-    private SecurityContext secCtx = new BallroomSecurityContext();
+    private boolean rethrowExceptionOnError = true;
+
+    public DMRCallback() {}
+
+    public DMRCallback(boolean rethrowExceptionOnError) {
+        this.rethrowExceptionOnError = rethrowExceptionOnError;
+    }
+
+    abstract public void dmrResponse(ModelNode responseNode);
 
     @Override
-    public SecurityContext getSecurityContext() {
-        return secCtx;
+    public void onResponseReceived(Request request, Response response) {
+        ModelNode responseNode = ModelNode.fromBase64(response.getText());
+        dmrResponse(responseNode);
     }
 
     @Override
-    public Set<String> getReadOnlyJavaNames(Class<?> type, SecurityContext securityContext) {
-        return Collections.EMPTY_SET;
-    }
-
-    @Override
-    public Set<String> getReadOnlyJavaNames(Class<?> type, String resourceAddress, SecurityContext securityContext) {
-        return Collections.EMPTY_SET;
-    }
-
-    @Override
-    public Set<String> getReadOnlyDMRNames(String resourceAddress, List<String> formItemNames, SecurityContext securityContext) {
-        return Collections.EMPTY_SET;
+    public void onError(Request request, Throwable exception) {
+        if (rethrowExceptionOnError) throw new RuntimeException(exception);
     }
 
 }

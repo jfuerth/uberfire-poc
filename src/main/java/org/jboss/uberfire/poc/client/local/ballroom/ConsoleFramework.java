@@ -1,7 +1,6 @@
-package org.jboss.uberfire.poc.client.ballroom;
+package org.jboss.uberfire.poc.client.local.ballroom;
 
 import com.google.gwt.core.client.GWT;
-import com.google.web.bindery.autobean.shared.AutoBeanFactory;
 import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import javax.enterprise.context.ApplicationScoped;

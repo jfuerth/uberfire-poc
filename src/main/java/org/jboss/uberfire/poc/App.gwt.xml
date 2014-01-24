@@ -16,7 +16,7 @@
 
     <inherits name="com.google.web.bindery.autobean.AutoBean"/>
     <inherits name="org.jboss.ballroom.Framework"/>
-    <replace-with class="org.jboss.uberfire.poc.client.ballroom.ConsoleFramework">
+    <replace-with class="org.jboss.uberfire.poc.client.local.ballroom.ConsoleFramework">
         <when-type-is class="org.jboss.ballroom.client.spi.Framework"/>
     </replace-with>
 </module>
