@@ -12,3 +12,4 @@ rebel.xml
 src/main/webapp/WEB-INF/deploy/app/rpcPolicyManifest/
 src/main/webapp/WEB-INF/classes/
 .factorypath
+src/main/webapp/WEB-INF/lib/
