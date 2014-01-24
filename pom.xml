@@ -135,20 +135,6 @@
             <scope>provided</scope>
         </dependency>
 
-     <!--   <dependency>
-            <groupId>org.jboss.as</groupId>
-            <artifactId>jboss-as-console-core</artifactId>
-            <version>2.1.0.Final</version>
-            <scope>provided</scope>
-        </dependency> -->
-
-     <!--   <dependency>
-            <groupId>org.jboss.as</groupId>
-            <artifactId>jboss-as-console-core</artifactId>
-            <version>2.1.0.Final</version>
-            <classifier>sources</classifier>
-            <scope>provided</scope>
-        </dependency> -->
     </dependencies>
 
     <repositories>
@@ -161,15 +147,6 @@
     <build>
         <finalName>${project.artifactId}</finalName>
         <outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
-
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
 
         <pluginManagement>
             <plugins>
@@ -190,12 +167,17 @@
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
-                                        <execute />
+                                        <skip />
                                     </action>
                                 </pluginExecution>
                             </pluginExecutions>
                         </lifecycleMappingMetadata>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.6</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -208,13 +190,12 @@
                 <executions>
                     <execution>
                         <goals>
-                            <goal>resources</goal>
                             <goal>compile</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <extraJvmArgs>-Xmx712m -XX:CompileThreshold=7000 -XX:MaxPermSize=128M -Derrai.jboss.home=${errai.jboss.home} -Derrai.dev.context=${errai.dev.context} -Derrai.jboss.javaagent.path=${settings.localRepository}/org/jboss/errai/errai-client-local-class-hider/${errai.version}/errai-client-local-class-hider-${errai.version}.jar</extraJvmArgs>
+                    <extraJvmArgs>-Xmx712m -XX:CompileThreshold=7000 -XX:MaxPermSize=128M -Derrai.jboss.home=${errai.jboss.home} -Derrai.dev.context=${errai.dev.context} -Derrai.jboss.javaopts="-Xmx1g -XX:MaxPermSize=256m" -Derrai.jboss.javaagent.path=${settings.localRepository}/org/jboss/errai/errai-client-local-class-hider/${errai.version}/errai-client-local-class-hider-${errai.version}.jar</extraJvmArgs>
                     <logLevel>INFO</logLevel>
                     <noServer>false</noServer>
                     <server>org.jboss.errai.cdi.server.gwt.JBossLauncher</server>
@@ -252,32 +233,6 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-            <!-- Unpack jboss-as from maven. Remove this if you wish to use your own jboss/wildfly instance. -->
-     <!--       <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>unpack</id>
-                        <phase>process-resources</phase>
-                        <goals>
-                            <goal>unpack</goal>
-                        </goals>
-                        <configuration>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>org.jboss.as</groupId>
-                                    <artifactId>jboss-as-dist</artifactId>
-                                    <version>${as.version}</version>
-                                    <type>zip</type>
-                                    <overWrite>false</overWrite>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>  -->
         </plugins>
     </build>
 
@@ -491,39 +446,6 @@
                     <scope>provided</scope>
                 </dependency>
             </dependencies>
-        </profile>
-
-        <profile>
-            <id>mobile</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jboss.errai</groupId>
-                        <artifactId>cordova-maven-plugin</artifactId>
-                        <version>2.4.1.Final</version>
-                        <executions>
-                            <execution>
-                                <id>build</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>build-project</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>snapshots.jboss.org</id>
-                    <name>JBoss Snapshot Repository</name>
-                    <url>http://snapshots.jboss.org/maven2</url>
-                    <layout>default</layout>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
         </profile>
     </profiles>
 </project>
