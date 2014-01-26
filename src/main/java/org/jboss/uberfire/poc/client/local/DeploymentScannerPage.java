@@ -59,14 +59,14 @@ public class DeploymentScannerPage extends Composite {
 
     public DeploymentScannerPage() {
         TextItem name = new TextItem("name", "Name");
-        CheckBoxItem autoDepExploded = new CheckBoxItem("auto-deploy-exploded", "Auto-deploy Exploded");
-        CheckBoxItem autoDepXML = new CheckBoxItem("auto-deploy-xml", "Auto-deploy XML");
-        CheckBoxItem autoDepZip = new CheckBoxItem("auto-deploy-zipped", "Auto-deploy Zipped");
-        NumberBoxItem deployTimeout = new NumberBoxItem("deployment-timeout", "Deployment Timeout");
-        TextItem path = new TextItem("deployments", "Deployments");
-        TextItem relativeTo = new TextItem("relative-to", "Relative-to");
-        CheckBoxItem scanEnabled = new CheckBoxItem("scan-enabled", "Scan Enabled");
-        NumberBoxItem scanInterval = new NumberBoxItem("scan-interval", "Scan Interval");
+        CheckBoxItem autoDepExploded = new CheckBoxItem("autoDeployExploded", "Auto-deploy Exploded");
+        CheckBoxItem autoDepXML = new CheckBoxItem("autoDeployXML", "Auto-deploy XML");
+        CheckBoxItem autoDepZip = new CheckBoxItem("autoDeployZipped", "Auto-deploy Zipped");
+        NumberBoxItem deployTimeout = new NumberBoxItem("deploymentTimeout", "Deployment Timeout");
+        TextItem path = new TextItem("path", "Deployments");
+        TextItem relativeTo = new TextItem("relativeTo", "Relative-to");
+        CheckBoxItem scanEnabled = new CheckBoxItem("enabled", "Scan Enabled");
+        NumberBoxItem scanInterval = new NumberBoxItem("scanInterval", "Scan Interval");
 
         scannerForm.setToolsCallback(new FormCallback<DeploymentScanner>() {
 
@@ -91,7 +91,6 @@ public class DeploymentScannerPage extends Composite {
     private void init() {
         ConsoleBeanFactory factory = consoleFramework.getBeanFactory();
         scanner = factory.deploymentScanner().as();
-        scannerForm.edit(scanner);
         scannerForm.setEnabled(false);
         fillScannerData();
     }
@@ -115,6 +114,7 @@ public class DeploymentScannerPage extends Composite {
                 scanner.setRelativeTo(result.get("relative-to").asString());
                 scanner.setScanInterval(result.get("scan-interval").asInt());
                 scanner.setEnabled(result.get("scan-enabled").asBoolean());
+                scannerForm.edit(scanner);
             }
         });
     }
