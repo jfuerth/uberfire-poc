@@ -4,72 +4,11 @@
   <div class="fill-layout-width">
     <div class="content-header-label">Deployment Scanners</div>
 
-    <!-- BEGIN deployment scanners master table -->
-    <div role="toolbar" class="default-toolstrip" style="text-align: right">
-      <button style="margin-right: 5px;" id="gwt-debug-addBtnEntityEditor" tabindex="0"
-        class="gwt-Button toolstrip-button toolstrip-button-secondary" type="button">Add</button>
-      <button style="margin-right: 5px;" id="gwt-debug-removeBtnEntityEditor" tabindex="0"
-        class="gwt-Button toolstrip-button toolstrip-button-secondary" type="button">Remove</button>
-    </div>
-    <table role="grid" class="default-cell-table">
-      <thead aria-hidden="false">
-        <tr>
-          <th colspan="1" class="cellTableHeader cellTableFirstColumnHeader">Name</th>
-          <th colspan="1" class="cellTableHeader cellTableLastColumnHeader">Enabled</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="cellTableEvenRow cellTableSelectedRow">
-          <td class="cellTableCell cellTableEvenRowCell cellTableFirstColumn cellTableSelectedRowCell">
-            <div tabindex="0" style="outline-style: none;">default</div>
-          </td>
-          <td class="cellTableCell cellTableEvenRowCell cellTableSelectedRowCell cellTableLastColumn">
-            <div style="outline-style: none;">
-              <img src="http://localhost:9990/console/app/clear.cache.gif"
-                style="width: 18px; height: 18px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAeklEQVR42mNgGAWDEogCcT8QG1FqUDkQfwbiOUDMTYpGYSR2JRD/R8J2xBigwMDIDFJ8EYg9gDgXiP8hGdIBxJyEjYEY8huq6SeaIa2keKkaiHeieQWEO8kJWB4g3kiuS9CBABAvBeIGLHJCpBqWBMQuWMTFRrMV6QAAJHsfWPdPzcAAAAAASUVORK5CYII=) no-repeat 0px 0px;"
-                border="0">
-            </div>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot aria-hidden="true" style="display: none;"></tfoot>
-    </table>
-    <table class="default-pager">
-      <tbody>
-        <tr>
-          <td class="DI EI" style="vertical-align: middle;" align="left"><img aria-disabled="true"
-            aria-label="First page" role="button" class="gwt-Image"
-            src="http://localhost:9990/console/app/clear.cache.gif"
-            style="width: 15px; height: 15px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAABR0lEQVR42nWQParCUBSE7zZdgqhptNUlKBFjZcRCV2AhLsBKEKxCbKKgpfH/p5vHHJhLfGgxyZ3vzOQkca/XC9Lz+UTRF9m3mXu/3zYoioM0TT8eQIkp44qlx+NhWi6XiKLog5P1+307izsVpM1mg0qlgsFggPv9/pNRTuZ2u2G326FarWI0GuF8PtvTt9starWaMWaYZYdy1+vV4OFwQL1et9dVaL/fo9FooNfr+QJnvkxDtVotdLtd21hkYRgiz3PzWqS7L5dKJSwWCz+kxOSV9WUeLpcLptMpyuUy1us1frH/cgwpPB6PLZwkCcQnk8kHE7eyiqfTyb53OBwiCAKsVisfjuPYM2bEHUs8EFL07XYbzWbTe/6wTqdjjF6LnLYKUFmWYT6fW0mbyGazmc9YmReGKG3RRvmixHh3Ch+Px5/Bb0XqDz6XKSkdytUFAAAAAElFTkSuQmCC) no-repeat 0px 0px;"
-            border="0"></td>
-          <td class="DI EI" style="vertical-align: middle;" align="left"><img aria-disabled="true"
-            aria-label="Previous page" role="button" class="gwt-Image"
-            src="http://localhost:9990/console/app/clear.cache.gif"
-            style="width: 15px; height: 15px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAABJUlEQVR42m1ROa6DMBT0OTlBhBQK+nAECiQqhNJwgxTcgIIGOiQqmpQsYQl072ssDbL5KUZvmRmPMWrfdzmOQ77frwZm1G3bdP8L5NSV4AHs27b9xzFMMQVgz1uUZSlxHFs3MjVqXVdrSSDRdV1JkkSg4Z56VG02AUHXdXK/3+X5fMqyLJaZB6AqkBQA7/dbfN/X18U8z7MWQkMj9erz+Yh5QBAEEkWRjOOojSaHmcBOmQPgOI4URXEauDdBjzYzHfX1esntdpO6rq0k6gDLfCWzLNMv3TSNtWcAob95miYNLtGnaSqe50lVVT95vIniw5AchuEkwzCUx+Ohe3Co4KA5k00DU9Djf+d5fs7QoVKnsDCX7Fn7vj/NV15djSZo5M3MINQ/2ulEaN8ZgwUAAAAASUVORK5CYII=) no-repeat 0px 0px;"
-            border="0"></td>
-          <td class="FI" style="vertical-align: middle;" align="left">
-            <div class="gwt-HTML">1-1 of 1</div>
-          </td>
-          <td class="DI EI" style="vertical-align: middle;" align="left"><img aria-disabled="true"
-            aria-label="Next page" role="button" class="gwt-Image"
-            src="http://localhost:9990/console/app/clear.cache.gif"
-            style="width: 15px; height: 15px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAABI0lEQVR42m1RMQ6CQBDcf/IBNLGh9ws0SAmh4QcWfICKxITKBBoaSlFE0W7NkMxlIRaT2Z2d2TsO+Xw++g/zPP+tbS/f73cloG+axvXg9/ut9FEDhAVNQBzHWlWV2hnnthYGXq+XQ5Ikut/vtW1bnabJzckIg4UFRRjGcdQsy/RwOGjXde5G20XyfD6XAgwRBi47nU4aBIH2fb/S6VvCBEUA/ePx0CiK9Hg8Op2zJWwFimSgLEv1PG+luzC+z57OHlzXte52Oz2fz05DCDdCLxQhgBm+Xq/q+77mee5OsnOw2BDq+/2ul8tleek0TVc6vWSByAEYIh4oDEMdhmEB5xbQxG6FEeGiKJb/y/5fECzb7ayJ2+3mAhbwCQsaLW8X2YOAHx5pRGKigYRcAAAAAElFTkSuQmCC) no-repeat 0px 0px;"
-            border="0"></td>
-          <td class="DI EI" style="vertical-align: middle;" align="left"><img aria-disabled="true"
-            aria-label="Last page" role="button" class="gwt-Image"
-            src="http://localhost:9990/console/app/clear.cache.gif"
-            style="width: 15px; height: 15px; background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAABTElEQVR42nWRva6CQBCF9zV9A9BgAbX6BFAYtVKiiT6BBU9AAwmJFYGKxtI/8K8bc+ZmNruaW5zMzMc5swuo5/NJr9fLkjBUs//2KYF1XVtmkfDvxe/3+y8MLRYLyrLMWvB4PGg+n1Oe55pD4JC63+/cLJdLGgwGVFUVz+AwCscNJCTPdPh6vdJmsyHP86hpGjZAbdvSer3WXML6ZBm6ruNrBkFAx+ORORg0m83I932LK2wWA4QbTKdTmkwmPIvxcrkwH4/HPCOnzKAsStOUer2exVBNrk82dTgcyHVd2u/3VhDccRzN+WQzWJYlG3a7Hd1uN4v3+33abrfWQQomqCgKGg6HFMcxvzceogpfrVY8ix+9wodAMxqNKAxDOp/PPAvHB4qiSHPUn3CSJPwfxSALhKM3xWEYIYHSm+x0Ov0w9Oo/g9zgeyEEL+oH0F8pOyQKkz0AAAAASUVORK5CYII=) no-repeat 0px 0px;"
-            border="0"></td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- END deployment scanners master table -->
+    <div id="scannerMasterTable" class="fill-layout-width">List of DeploymentScanners goes here</div>
 
     <div class="content-group-label">Details</div>
-    <div class="fill-layout-width">
-      <div id="helpPanel"></div>
-      <div id="scannerDetail" aria-hidden="false">ScannerForm Goes Here</div>
-    </div>
+    <div id="helpPanel"></div>
+    <div id="scannerDetail">ScannerForm Goes Here</div>
   </div>
 </div>
 </html>
