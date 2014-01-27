@@ -35,9 +35,10 @@ import org.jboss.errai.ui.nav.client.local.Page;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
 
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import org.jboss.ballroom.client.widgets.forms.TextBoxItem;
+import org.jboss.dmr.client.ModelDescriptionConstants;
 import org.jboss.uberfire.poc.client.local.dmr.DMRCallback;
 import org.jboss.uberfire.poc.client.local.dmr.DMRRequest;
 
@@ -52,40 +53,57 @@ public class DeploymentScannerPage extends Composite {
     @DataField
     private Widget scannerDetail;
     private Form<DeploymentScanner> scannerForm = new Form(DeploymentScanner.class);
-
     @Inject
     private ConsoleFramework consoleFramework;
     private DeploymentScanner scanner;
+    private TextItem name = new TextItem("name", "Name");
+    private CheckBoxItem autoDepExploded = new CheckBoxItem("autoDeployExploded", "Auto-deploy Exploded");
+    private CheckBoxItem autoDepXML = new CheckBoxItem("autoDeployXML", "Auto-deploy XML");
+    private CheckBoxItem autoDepZip = new CheckBoxItem("autoDeployZipped", "Auto-deploy Zipped");
+    private NumberBoxItem deployTimeout = new NumberBoxItem("deploymentTimeout", "Deployment Timeout");
+    private TextBoxItem path = new TextBoxItem("path", "Deployments");
+    private TextBoxItem relativeTo = new TextBoxItem("relativeTo", "Relative-to");
+    private CheckBoxItem scanEnabled = new CheckBoxItem("enabled", "Scan Enabled");
+    private NumberBoxItem scanInterval = new NumberBoxItem("scanInterval", "Scan Interval");
 
     public DeploymentScannerPage() {
-        TextItem name = new TextItem("name", "Name");
-        CheckBoxItem autoDepExploded = new CheckBoxItem("autoDeployExploded", "Auto-deploy Exploded");
-        CheckBoxItem autoDepXML = new CheckBoxItem("autoDeployXML", "Auto-deploy XML");
-        CheckBoxItem autoDepZip = new CheckBoxItem("autoDeployZipped", "Auto-deploy Zipped");
-        NumberBoxItem deployTimeout = new NumberBoxItem("deploymentTimeout", "Deployment Timeout");
-        TextItem path = new TextItem("path", "Deployments");
-        TextItem relativeTo = new TextItem("relativeTo", "Relative-to");
-        CheckBoxItem scanEnabled = new CheckBoxItem("enabled", "Scan Enabled");
-        NumberBoxItem scanInterval = new NumberBoxItem("scanInterval", "Scan Interval");
-
         scannerForm.setToolsCallback(new FormCallback<DeploymentScanner>() {
+            @Override
+            public void onSave(Map<String, Object> changeset) {
+                saveItemValuesToAutoBean();
+                //Window.alert("Ready to save: " + changeset);
+                ModelNode writeAllOp = writeAllAttributes();
+                DMRRequest.sendRequest(writeAllOp, new DMRCallback() {
+                    @Override
+                    public void dmrResponse(ModelNode responseNode) {
+                        System.out.println("****** Saved scanner *********");
+                        System.out.println(responseNode.toString());
+                        System.out.println("******************************");
+                        scannerForm.edit(scanner);
+                    }
+                });
+            }
 
-          @Override
-          public void onSave(Map<String, Object> changeset) {
-            Window.alert("Ready to save: " + changeset);
-          }
-
-          @Override
-          public void onCancel(DeploymentScanner entity) {
-            Window.alert("Canceled edit on: " + entity);
-          }
+            @Override
+            public void onCancel(DeploymentScanner entity) {
+                //Window.alert("Canceled edit on: " + entity);
+            }
         });
 
         scannerForm.setFields(name, autoDepExploded, autoDepXML, autoDepZip, deployTimeout, path, relativeTo, scanEnabled, scanInterval);
         scannerDetail = scannerForm.asWidget();
     }
 
-
+    private void saveItemValuesToAutoBean() {
+        scanner.setAutoDeployExploded(autoDepExploded.getValue());
+        scanner.setAutoDeployXML(autoDepXML.getValue());
+        scanner.setAutoDeployZipped(autoDepZip.getValue());
+        scanner.setDeploymentTimeout(deployTimeout.getValue().longValue());
+        scanner.setPath(path.getValue());
+        scanner.setRelativeTo(relativeTo.getValue());
+        scanner.setEnabled(scanEnabled.getValue());
+        scanner.setScanInterval(scanInterval.getValue().intValue());
+    }
 
     @PostConstruct
     private void init() {
@@ -96,7 +114,7 @@ public class DeploymentScannerPage extends Composite {
     }
 
     private void fillScannerData() {
-        DMRRequest.sendRequest(scannerRequest(), new DMRCallback() {
+        DMRRequest.sendRequest(defaultScanner(), new DMRCallback() {
             @Override
             public void dmrResponse(ModelNode responseNode) {
                 System.out.println("***** Got response *******");
@@ -119,14 +137,93 @@ public class DeploymentScannerPage extends Composite {
         });
     }
 
-    private ModelNode scannerRequest() {
+    private ModelNode defaultScanner() {
         ModelNode request = new ModelNode();
-        ModelNode address = new ModelNode();
-        address.add("subsystem", "deployment-scanner");
-        address.add("scanner", "default");
-        request.get("address").set(address);
-        request.get("operation").set("read-resource");
+        request.get(ModelDescriptionConstants.OP_ADDR).set(scannerAddress("default"));
+        request.get(ModelDescriptionConstants.OP).set("read-resource");
         request.get("attributes-only").set(true);
         return request;
+    }
+
+    private ModelNode writeAllAttributes() {
+        System.out.println("writeAllAttributes()");
+        try {
+            ModelNode address = scannerAddress(scanner.getName());
+            ModelNode steps = new ModelNode();
+
+            ModelNode writeAttrOp = writeAttributeOp(address);
+            writeAttrOp.get(ModelDescriptionConstants.NAME).set("auto-deploy-exploded");
+            writeAttrOp.get("value").set(scanner.isAutoDeployExploded());
+            steps.add(writeAttrOp);
+
+            writeAttrOp = writeAttributeOp(address);
+            writeAttrOp.get(ModelDescriptionConstants.NAME).set("auto-deploy-xml");
+            writeAttrOp.get("value").set(scanner.isAutoDeployXML());
+            steps.add(writeAttrOp);
+
+            writeAttrOp = writeAttributeOp(address);
+            writeAttrOp.get(ModelDescriptionConstants.NAME).set("auto-deploy-zipped");
+            writeAttrOp.get("value").set(scanner.isAutoDeployZipped());
+            steps.add(writeAttrOp);
+
+            writeAttrOp = writeAttributeOp(address);
+            writeAttrOp.get(ModelDescriptionConstants.NAME).set("deployment-timeout");
+            writeAttrOp.get("value").set(scanner.getDeploymentTimeout());
+            steps.add(writeAttrOp);
+
+            writeAttrOp = writeAttributeOp(address);
+            writeAttrOp.get(ModelDescriptionConstants.NAME).set("path");
+            writeAttrOp.get("value").set(scanner.getPath());
+            steps.add(writeAttrOp);
+
+            writeAttrOp = writeAttributeOp(address);
+            writeAttrOp.get(ModelDescriptionConstants.NAME).set("relative-to");
+            writeAttrOp.get("value").set(scanner.getRelativeTo());
+            steps.add(writeAttrOp);
+
+            writeAttrOp = writeAttributeOp(address);
+            writeAttrOp.get(ModelDescriptionConstants.NAME).set("scan-interval");
+            writeAttrOp.get("value").set(scanner.getScanInterval());
+            steps.add(writeAttrOp);
+
+            writeAttrOp = writeAttributeOp(address);
+            writeAttrOp.get(ModelDescriptionConstants.NAME).set("scan-enabled");
+            writeAttrOp.get("value").set(scanner.isEnabled());
+            steps.add(writeAttrOp);
+
+            ModelNode composite = composite();
+            composite.get(ModelDescriptionConstants.STEPS).set(steps);
+
+            System.out.println("*********************");
+            System.out.println("write all attributes");
+            System.out.println(composite.toString());
+            System.out.println("*********************");
+            return composite;
+        } catch (Throwable t) {
+            t.printStackTrace();
+            return null;
+        }
+
+    }
+
+    private ModelNode scannerAddress(String scannerName) {
+        ModelNode address = new ModelNode();
+        address.add("subsystem", "deployment-scanner");
+        address.add("scanner", scannerName);
+        return address;
+    }
+
+    private ModelNode writeAttributeOp(ModelNode address) {
+        ModelNode op = new ModelNode();
+        op.get(ModelDescriptionConstants.OP_ADDR).set(address);
+        op.get(ModelDescriptionConstants.OP).set(ModelDescriptionConstants.WRITE_ATTRIBUTE_OPERATION);
+        return op;
+    }
+
+    private ModelNode composite() {
+        ModelNode composite = new ModelNode();
+        composite.get(ModelDescriptionConstants.OP_ADDR).setEmptyList();
+        composite.get(ModelDescriptionConstants.OP).set(ModelDescriptionConstants.COMPOSITE);
+        return composite;
     }
 }
