@@ -22,25 +22,29 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import org.jboss.ballroom.client.widgets.forms.FormCallback;
+
 import org.jboss.ballroom.client.widgets.forms.CheckBoxItem;
 import org.jboss.ballroom.client.widgets.forms.Form;
+import org.jboss.ballroom.client.widgets.forms.FormCallback;
 import org.jboss.ballroom.client.widgets.forms.NumberBoxItem;
+import org.jboss.ballroom.client.widgets.forms.TextBoxItem;
 import org.jboss.ballroom.client.widgets.forms.TextItem;
+import org.jboss.ballroom.client.widgets.tables.DefaultCellTable;
+import org.jboss.dmr.client.ModelDescriptionConstants;
 import org.jboss.dmr.client.ModelNode;
-import org.jboss.uberfire.poc.client.local.ballroom.ConsoleBeanFactory;
-import org.jboss.uberfire.poc.client.local.ballroom.ConsoleFramework;
-import org.jboss.uberfire.poc.client.local.ballroom.DeploymentScanner;
 import org.jboss.errai.ui.nav.client.local.Page;
 import org.jboss.errai.ui.shared.api.annotations.DataField;
 import org.jboss.errai.ui.shared.api.annotations.Templated;
+import org.jboss.uberfire.poc.client.local.ballroom.ConsoleBeanFactory;
+import org.jboss.uberfire.poc.client.local.ballroom.ConsoleFramework;
+import org.jboss.uberfire.poc.client.local.ballroom.DeploymentScanner;
+import org.jboss.uberfire.poc.client.local.dmr.DMRCallback;
+import org.jboss.uberfire.poc.client.local.dmr.DMRRequest;
+import org.jboss.uberfire.poc.client.local.viewframework.Columns.EnabledColumn;
+import org.jboss.uberfire.poc.client.local.viewframework.Columns.NameColumn;
 
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-import org.jboss.ballroom.client.widgets.forms.TextBoxItem;
-import org.jboss.dmr.client.ModelDescriptionConstants;
-import org.jboss.uberfire.poc.client.local.dmr.DMRCallback;
-import org.jboss.uberfire.poc.client.local.dmr.DMRRequest;
 
 /**
  *
@@ -50,12 +54,39 @@ import org.jboss.uberfire.poc.client.local.dmr.DMRRequest;
 @Page
 public class DeploymentScannerPage extends Composite {
 
+    /**
+   * The master table that lists all existing Deployment Scanners. The selected
+   * item in this table can be viewed and edited in the detail table.
+   * <p>
+   * In the original HAL console code, this table is managed by an EntityEditor,
+   * which is not (yet?) part of this POC.
+   */
+    @DataField
+    private DefaultCellTable<DeploymentScanner> scannerMasterTable = new DefaultCellTable<DeploymentScanner>(4);
+
+    /**
+     * The detail table that shows the properties of the currently-selected scanner.
+     */
     @DataField
     private Widget scannerDetail;
-    private Form<DeploymentScanner> scannerForm = new Form(DeploymentScanner.class);
+
+    /**
+     * The AutoBeans-driven component that owns the {@link #scannerDetail} widget.
+     */
+    private Form<DeploymentScanner> scannerForm = new Form<DeploymentScanner>(DeploymentScanner.class);
+
+    /**
+     * Global variables that the Ballroom widgets collection cares about.
+     */
     @Inject
     private ConsoleFramework consoleFramework;
+
+    /**
+     * The model object that's currently selected in the master table and whose
+     * details are currently occupying the detail table.
+     */
     private DeploymentScanner scanner;
+
     private TextItem name = new TextItem("name", "Name");
     private CheckBoxItem autoDepExploded = new CheckBoxItem("autoDeployExploded", "Auto-deploy Exploded");
     private CheckBoxItem autoDepXML = new CheckBoxItem("autoDeployXML", "Auto-deploy XML");
@@ -92,6 +123,9 @@ public class DeploymentScannerPage extends Composite {
 
         scannerForm.setFields(name, autoDepExploded, autoDepXML, autoDepZip, deployTimeout, path, relativeTo, scanEnabled, scanInterval);
         scannerDetail = scannerForm.asWidget();
+
+        scannerMasterTable.addColumn(new NameColumn(), NameColumn.LABEL);
+        scannerMasterTable.addColumn(new EnabledColumn(), EnabledColumn.LABEL);
     }
 
     private void saveItemValuesToAutoBean() {
